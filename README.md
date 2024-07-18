@@ -13,7 +13,8 @@ pnpm dev
 # or
 bun dev
 ```
-**Run npm run seed to initialize the databse
+**Run npm run seed to initialize the database.
+This is a preproduction-level project, and I am capable of doing much more in a real-world setting.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
