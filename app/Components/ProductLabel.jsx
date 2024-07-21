@@ -28,7 +28,7 @@ export default function ProductLabel() {
           item.registered ? (
             <div key={index} className="max-w-max bg-inherit p-4">
               <Link href={`/${item.brand}/${item._id}`}>
-                <div className=" max-h-min p-3 shadow bg-white rounded hover:scale-95 hover:shadow-lg hover:shadow-teal-300 transition border border-dashed border-black">
+                <div className=" max-h-min p-3 shadow-xl bg-white rounded hover:scale-95 hover:shadow-lg hover:shadow-blue-300 transition border border-dashed border-black">
                   {item.image && (
                     <div className="mx-4 flex items-center">
                       <img

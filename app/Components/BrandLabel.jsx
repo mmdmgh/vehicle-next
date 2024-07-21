@@ -35,14 +35,14 @@ export default function BrandLabel() {
 
   if (data.length > 0) {
     return (
-      <div className="flex justify-center my-5 font-medium">
+      <div className="flex justify-center mb-5 font-medium">
         {brandList.slice(0, 3).map((index) => (
           <div key={index} className="max-w-max bg-inherit p-4">
             <Link href={`/${index.toLowerCase()}`}>
-              <div className=" p-3 shadow bg-white rounded hover:scale-95 hover:shadow-lg hover:shadow-teal-300 transition border border-dashed border-black">
+              <div className=" p-3 shadow-xl bg-white rounded hover:scale-95 hover:shadow-lg hover:shadow-blue-300 transition border border-dashed border-black">
                 <div className="mx-4 flex flex-col items-center ">
                   <img src={logo[index]} className="rounded-md w-56" />
-                  {index}
+                  <p className="font-bold">{index}</p>
                 </div>
               </div>
             </Link>
