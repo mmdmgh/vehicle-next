@@ -30,7 +30,7 @@ const Navbar = () => {
       </div>
       {menu && !isLargeScreen && (
         <div
-          className="flex flex-col gap-5 w-44 bg-neutral-200 rounded-r-lg shadow-lg fixed top-0 left-0 h-full z-10 "
+          className="flex flex-col gap-5 w-44 bg-white rounded-r-lg shadow-lg fixed top-0 left-0 h-full z-10  bg-opacity-60 backdrop-blur-sm"
           onClick={() => setMenu((prev) => !prev)}
         >
           <div className="md:hidden ml-5 cursor-pointer py-6 px-2">
@@ -45,6 +45,9 @@ const Navbar = () => {
           <Link href="/truck" className="p-5 hover:bg-teal-300 transition rounded shadow-lg">
             Trucks
           </Link>
+          <div className="p-5 hover:bg-teal-300 transition rounded shadow-lg">
+            Contact us
+          </div>
         </div>
       )}
       <div className="md:flex  gap-10 ml-5  hidden ">

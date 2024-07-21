@@ -3,10 +3,12 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { UploadButton } from "@uploadthing/react";
-import Image from "next/image";
+import Skeleton from "@mui/material/Skeleton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faTrash} from "@fortawesome/free-solid-svg-icons";
 
 const label =
-  "bg-cyan-100 rounded-r-xl shadow-md text-lg p-2 mr-2 flex justify-end w-32";
+  "bg-cyan-100 rounded-r-xl shadow-md text-lg p-2 mr-2 flex justify-end w-32 border border-dashed border-black border-l-transparent";
 
 const Sell = () => {
   const { data: session, status } = useSession();
@@ -23,6 +25,23 @@ const Sell = () => {
   const [err, setErr] = useState("");
   const [pending, setpending] = useState();
   const router = useRouter();
+  const [loadingStates, setLoadingStates] = useState(
+    new Array(imageList.length).fill(true)
+  );
+
+  useEffect(() => {
+    const loadImages = imageList.map((image, index) => {
+      const img = new Image();
+      img.src = image;
+      img.onload = () => {
+        setLoadingStates((prevStates) => {
+          const newStates = [...prevStates];
+          newStates[index] = false;
+          return newStates;
+        });
+      };
+    });
+  }, [imageList]);
 
   function handleInput(e) {
     const lowercasedValue = e.target.value.toLowerCase();
@@ -30,6 +49,7 @@ const Sell = () => {
   }
   const handleClientUploadComplete = (res) => {
     setImageList((prevImageList) => [...prevImageList, res[0].url]);
+    setLoadingStates((prevLoadingStates) => [...prevLoadingStates, true]);
     alert("Upload Completed");
   };
   const removeImage = (index) => {
@@ -92,32 +112,35 @@ const Sell = () => {
       setErr("something went wrong");
     }
   }
-  if (!session) {
-    return (
-      <div className="flex items-center justify-center w-screen">
-        <div className="max-w-md px-8 py-12 bg-white shadow-lg rounded-lg">
-          <h1 className="text-3xl font-bold mb-4 text-center">
-            You need to be logged in to access the advertising page
-          </h1>
-          <div className="text-lg mb-6 text-center">
-            Please{" "}
-            <Link href="/login">
-              <div className="text-blue-600 underline">log in</div>
-            </Link>{" "}
-            to continue.
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // if (!session) {
+  //   return (
+  //     <div className="flex items-center justify-center w-screen">
+  //       <div className="max-w-md px-8 py-12 bg-white shadow-lg rounded-lg">
+  //         <h1 className="text-3xl font-bold mb-4 text-center">
+  //           You need to be logged in to access the advertising page
+  //         </h1>
+  //         <div className="text-lg mb-6 text-center">
+  //           Please{" "}
+  //           <Link href="/login">
+  //             <div className="text-blue-600 underline">log in</div>
+  //           </Link>{" "}
+  //           to continue.
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div>
-      <div className="bg-cyan-100 md:rounded-r-xl shadow-md text-lg p-2 mr-2 flex justify-center md:justify-end w-full ">
+      <div className="bg-cyan-100 rounded-r-xl shadow-md text-lg p-2 mr-2 flex justify-center md:justify-end w-full border border-dashed border-black border-l-transparent">
         <h1 className="text-4xl font-medium p-5 ">Add Your Vehicle Here</h1>
       </div>
       <div>
-        <form onSubmit={handleSubmit} className="mt-10 flex md:flex-row flex-col absolute ">
+        <form
+          onSubmit={handleSubmit}
+          className="mt-10 flex md:flex-row flex-col absolute "
+        >
           <div>
             {" "}
             <div className="flex mb-5">
@@ -198,7 +221,6 @@ const Sell = () => {
                 onChange={(e) => handleInput(e)}
               />
             </div>
-
           </div>
           <div className="ml-20 my-5">
             <UploadButton
@@ -215,33 +237,44 @@ const Sell = () => {
               }}
             />
             <div>
-              <ul>
+              <ul className="flex flex-wrap w-56 ">
                 {imageList.map((image, index) => (
                   <li key={index} className="mx-4 flex flex-col items-center">
-                    <Image
-                      className="rounded-md"
-                      src={image}
-                      width={200}
-                      height={200}
-                    />
-                    <button
-                      onClick={() => removeImage(index)}
-                      className="bg-rose-700 md:py-2 md:px-4 rounded-full px-2"
-                    >
-                      x
-                    </button>
+                    {loadingStates[index] ? (
+                      <Skeleton
+                        variant="rounded"
+                        animation="wave"
+                        width={100}
+                        height={50}
+                      />
+                    ) : (
+                      <div className="flex border gap-3 rounded-md bg-blue-300">
+                        <button
+                          onClick={() => removeImage(index)}
+                          className=" rounded-full pl-3 hover:scale-110 transition"
+                        >
+                          <FontAwesomeIcon icon={faTrash} />
+                        </button>
+                        <img
+                          className="rounded-md"
+                          src={image}
+                          width={400}
+                          alt={`Image ${index}`}
+                        />
+                      </div>
+                    )}
                   </li>
                 ))}
               </ul>
             </div>
           </div>
           <button
-              type="submit"
-              className="w-40 bg-blue-300 rounded-r-3xl shadow-md p-5 text-xl font-medium md:absolute -bottom-20"
-            >
-              {" "}
-              {pending ? "Submiting..." : "Submit"}{" "}
-            </button>
+            type="submit"
+            className="w-40 bg-blue-300 rounded-r-3xl shadow-md p-5 text-xl font-medium md:absolute -bottom-20"
+          >
+            {" "}
+            {pending ? "Submiting..." : "Submit"}{" "}
+          </button>
         </form>
         {err && <span>{err}</span>}
       </div>
