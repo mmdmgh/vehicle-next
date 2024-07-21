@@ -6,6 +6,7 @@ import { UploadButton } from "@uploadthing/react";
 import Skeleton from "@mui/material/Skeleton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 const label =
   "bg-cyan-100 rounded-r-xl shadow-md text-lg p-2 mr-2 flex justify-end w-32 border border-dashed border-black border-l-transparent";
