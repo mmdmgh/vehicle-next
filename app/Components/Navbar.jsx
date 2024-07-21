@@ -5,7 +5,6 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCaravan,
-  faAngleDown,
   faUser,
   faPlus,
   faBars,
@@ -70,7 +69,6 @@ const Navbar = () => {
                 className="pr-2 w-5 h-5 text-slate-800 "
               />
               <span className="md:inline-block hidden" >My account</span>
-              <FontAwesomeIcon icon={faAngleDown} className="text-slate-800" />
             </div>
           </div>
           <div
