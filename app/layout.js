@@ -10,10 +10,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="bg-blue-100 absolute top-0 -z-10 h-screen w-full font-DM">
+      <head>
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
+      </head>
+      <body className="relative font-DM">
+        <div className="fixed inset-0 bg-hero-pattern opacity-70 bg-cover bg-center -z-10"></div>
+        <div className="fixed inset-0 backdrop-blur-lg -z-10"></div>{" "}
         <AuthProvider>
           <Navbar />
-          {children}
+          <main className="relative z-0">{children}</main>
         </AuthProvider>
       </body>
     </html>

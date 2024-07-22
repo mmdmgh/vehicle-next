@@ -19,9 +19,10 @@ const Navbar = () => {
   const [menu, setMenu] = useState(false);
   const { width } = useWindowSize();
   const isLargeScreen = width >= 768;
+  
 
   return (
-    <div className="flex flex-grow justify-between border-b items-center">
+    <div className="flex flex-grow justify-between items-center ">
       <div
         onClick={() => setMenu((prev) => !prev)}
         className="md:hidden ml-5 cursor-pointer "
@@ -36,28 +37,28 @@ const Navbar = () => {
           <div className="md:hidden ml-5 cursor-pointer py-6 px-2">
             <FontAwesomeIcon icon={faBars} />
           </div>
-          <Link href="/car" className="p-5 hover:bg-blue-300 transition rounded shadow-lg" >
+          <Link href="/car" className="p-5 hover:bg-blue-400 transition rounded shadow-lg" >
             Cars
           </Link>
-          <Link href="/motor" className="p-5 hover:bg-blue-300 transition rounded shadow-lg">
+          <Link href="/motor" className="p-5 hover:bg-blue-400 transition rounded shadow-lg">
             Motors
           </Link>
-          <Link href="/truck" className="p-5 hover:bg-blue-300 transition rounded shadow-lg">
+          <Link href="/truck" className="p-5 hover:bg-blue-400 transition rounded shadow-lg">
             Trucks
           </Link>
-          <div className="p-5 hover:bg-blue-300 transition rounded shadow-lg">
+          <div className="p-5 hover:bg-blue-400 transition rounded shadow-lg">
             Contact us
           </div>
         </div>
       )}
       <div className="md:flex  gap-10 ml-5  hidden ">
-        <Link href="/car" className="hover:bg-blue-300 transition rounded p-2  ">Cars</Link>
+        <Link href="/car" className="hover:bg-blue-400 transition rounded p-2  ">Cars</Link>
 
-        <Link href="/motor" className="hover:bg-blue-300 p-2 rounded transition">Motors</Link>
+        <Link href="/motor" className="hover:bg-blue-400 p-2 rounded transition">Motors</Link>
 
-        <Link href="/truck" className="hover:bg-blue-300 p-2 rounded transition">Trucks</Link>
+        <Link href="/truck" className="hover:bg-blue-400 p-2 rounded transition">Trucks</Link>
 
-        <div className="hover:bg-blue-300 p-2 rounded transition">Contact us</div>
+        <div className="hover:bg-blue-400 p-2 rounded transition">Contact us</div>
       </div>
       <Link href="/">
         <FontAwesomeIcon icon={faCaravan} className="w-14 h-14 mx-auto p-2" />
@@ -66,12 +67,12 @@ const Navbar = () => {
       <div className="flex items-center gap-10 py-5">
         <div onMouseLeave={() => setHoveredMyAccount(false)}>
           <div>
-            <div onMouseEnter={() => setHoveredMyAccount(true)} className="hover:bg-blue-300 transition rounded p-2">
+            <div onMouseEnter={() => setHoveredMyAccount(true)} className="hover:bg-blue-400 transition rounded p-2">
               <FontAwesomeIcon
                 icon={faUser}
                 className="pr-2 w-5 h-5 text-slate-800 "
               />
-              <span className="md:inline-block hidden" >My account</span>
+              {session ? session.user.username : <span className="md:inline-block hidden" >My account</span>}
             </div>
           </div>
           <div
@@ -89,18 +90,18 @@ const Navbar = () => {
             ) : (
               <>
                 <Link href="/signup" className="">
-                  <p className="p-3 hover:bg-blue-300 transition rounded-t-lg">Sign Up</p>
+                  <p className="p-3 hover:bg-blue-400 transition rounded-t-lg">Sign Up</p>
                 </Link>
                 <hr />
                 <Link href="/login">
-                  <p className="p-3 hover:bg-blue-300 transition rounded-b-lg">Log in</p>
+                  <p className="p-3 hover:bg-blue-400 transition rounded-b-lg">Log in</p>
                 </Link>
               </>
             )}
           </div>
         </div>
         <Link href="/sell">
-          <div className="mr-2 flex items-center gap-2  hover:bg-blue-300 transition rounded p-2">
+          <div className="mr-2 flex items-center gap-2  hover:bg-blue-400 transition rounded p-2">
             <FontAwesomeIcon
               icon={faPlus}
               className="border border-zinc-950 rounded-full p-2 text-slate-800 transition "

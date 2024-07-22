@@ -115,15 +115,15 @@ const Sell = () => {
   }
   if (!session) {
     return (
-      <div className="flex items-center justify-center w-screen">
+      <div className="flex items-center justify-center min-h-screen ">
         <div className="max-w-md px-8 py-12 bg-white shadow-lg rounded-lg">
-          <h1 className="text-3xl font-bold mb-4 text-center">
+          <h1 className="text-3xl font-bold mb-4 text-center text-blue-600">
             You need to be logged in to access the advertising page
           </h1>
           <div className="text-lg mb-6 text-center">
             Please{" "}
             <Link href="/login">
-              <div className="text-blue-600 underline">log in</div>
+              <div className="text-blue-600 underline cursor-pointer">log in</div>
             </Link>{" "}
             to continue.
           </div>
@@ -134,7 +134,7 @@ const Sell = () => {
 
   return (
     <div className="grid grid-cols-2">
-      <div>
+      <div className="z-10">
         <div className="bg-cyan-100 rounded-r-xl shadow-md text-lg p-2 mr-2 flex justify-center md:justify-end w-full border border-dashed border-black border-l-transparent">
           <h1 className="text-4xl font-medium p-5 ">Add Your Vehicle Here</h1>
         </div>
@@ -281,7 +281,7 @@ const Sell = () => {
           {err && <span>{err}</span>}
         </div>
       </div>
-      <div className="hidden md:block mx-auto animate-bounce-slow">
+      <div className="hidden md:block mx-auto mt-20 animate-bounce-slow" >
         <img
           src={
             "https://utfs.io/f/72bdfa81-6679-4970-b363-e23657fee7d7-9kjt05.svg"

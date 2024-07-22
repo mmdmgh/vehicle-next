@@ -30,6 +30,9 @@ module.exports = withUt({
           },
         },
       },
+      backgroundImage: {
+        'hero-pattern': "url('https://utfs.io/f/7680ab25-1b64-4648-9e92-cfd41f4b1a32-kr1p6n.jpg')",
+      },
     },
   },
   plugins: [],
