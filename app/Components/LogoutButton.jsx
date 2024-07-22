@@ -5,12 +5,12 @@ export default function LogoutButton() {
   const router = useRouter();
 
   const handleLogout = async () => {
-    await signOut({ redirect: false, callbackUrl: "/" }); // Redirect to homepage after logout
-    router.push("/"); // Optionally, manually redirect
+    await signOut({ redirect: false, callbackUrl: "/" });
+    router.push("/");
   };
 
   return (
-    <button onClick={handleLogout} className="p-3">
+    <button onClick={handleLogout} className="p-3 hover:bg-blue-300 transition rounded-t-lg">
       Logout
     </button>
   );
