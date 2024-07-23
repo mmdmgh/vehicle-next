@@ -40,7 +40,7 @@ export default function LoginModal({ onClose }) {
   }
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
-      <div className=" bg-white p-8 rounded shadow-md w-1/4">
+      <div className=" bg-white p-8 rounded shadow-md md:w-1/4">
         <h2 className="text-2xl text-center p-5 font-semibold mb-2">Login</h2>
         {err && <p className="text-red-500 mb-4">{err}</p>}
         <form onSubmit={handleSubmit} class="items-center justify-center">

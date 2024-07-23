@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
 
 const sellSchema = new mongoose.Schema({
     type:{
@@ -42,4 +42,4 @@ const sellSchema = new mongoose.Schema({
 
 const Sell = mongoose.models.Sell || mongoose.model("Sell", sellSchema);
 
-export default Sell;
+module.exports = Sell;
