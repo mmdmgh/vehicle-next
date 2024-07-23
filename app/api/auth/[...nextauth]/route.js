@@ -1,10 +1,8 @@
-import User from "../../../../models/userModel.cjs";
+import User from "../../../../models/userModel.js";
 import { connectDB } from "../../../../utils/connect";
 import NextAuth from "next-auth/next";
 import bcrypt from "bcrypt";
-import CredentialsProvider from "next-auth/providers/credentials"
-
-
+import CredentialsProvider from "next-auth/providers/credentials";
 
 async function login(credentials) {
   try {
@@ -24,7 +22,6 @@ async function login(credentials) {
 }
 
 export const authOptions = {
-    
   pages: {
     signIn: "/login",
   },

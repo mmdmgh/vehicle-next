@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
-import User from "../models/userModel.cjs";
-import Sell from "../models/sellModels.cjs";
-import dotenv from 'dotenv';
+const mongoose = require('mongoose');
+const User = require('../models/userModel'); 
+const Sell = require('../models/sellModels');
+const dotenv = require('dotenv');
 dotenv.config();
 
 const MONGO_URI = process.env.MONGO_URI;
@@ -84,7 +84,7 @@ const seedData = async () => {
       type: "car",
       email: "ali@gmail.com",
       brand: "mercedesbenz",
-      model: "AMG E53 Cabriolet",
+      model: "AMG E53",
       work: "40k",
       year: 2020,
       price: "80k",
@@ -168,9 +168,9 @@ const seedData = async () => {
     },
   ];
 
-  await User.deleteMany({}); 
+  await User.deleteMany({});
   await User.insertMany(users);
-  await Sell.deleteMany({}); 
+  await Sell.deleteMany({});
   await Sell.insertMany(product);
 
   console.log("Database seeded successfully!");
